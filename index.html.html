@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Цифровой мультикуб</title>
+<style>
+:root{--g:#173f35;--g2:#285c4c;--line:#d9ddd5;--cream:#f6eddc;--ink:#18372f}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 58%,#fff,#eef2eb);color:var(--ink);font:15px Arial,sans-serif;min-height:100vh}button,input,textarea{font:inherit}.bar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5vw}.brand{font-weight:bold;letter-spacing:.15em}.brand i{display:inline-grid;place-items:center;width:38px;height:38px;background:var(--g);color:#fff;border-radius:10px;font:22px Georgia;margin-right:10px}.edit,.back{border:1px solid var(--line);background:#f8faf7;color:var(--g);border-radius:10px;padding:10px 14px;font-weight:bold;cursor:pointer;text-decoration:none}.intro{text-align:center;margin:28px 16px 0}.intro h1{font:42px Georgia;margin:8px}.intro p{color:#718078}.stage{height:440px;display:flex;align-items:center;justify-content:center;perspective:1300px;overflow:hidden}.scene{width:700px;height:430px;display:grid;place-items:center;touch-action:none}.cube{width:200px;height:200px;position:relative;transform-style:preserve-3d;transition:transform .65s}.face,.panel,.lid,.base{position:absolute;inset:0;transform-style:preserve-3d}.face{border:3px solid #0e3028;background:linear-gradient(145deg,#2b6452,#173f35)}.front{transform:translateZ(100px)}.back{transform:rotateY(180deg) translateZ(100px)}.right{transform:rotateY(90deg) translateZ(100px)}.left{transform:rotateY(-90deg) translateZ(100px)}.top{transform:rotateX(90deg) translateZ(100px);display:grid;place-items:center;color:#fff;font-weight:bold;letter-spacing:.16em}.bottom{transform:rotateX(-90deg) translateZ(100px)}.open .solid{opacity:0;pointer-events:none}.solid{transition:.25s}.base{background:#19463a;border:4px solid #10342b}.panel{border:4px solid #10342b;background:#1e5042;padding:9px;transition:transform .9s;cursor:pointer}.p0{transform:rotateX(-90deg);transform-origin:bottom}.p1{transform:rotateY(90deg);transform-origin:left}.p2{transform:rotateX(90deg);transform-origin:top}.p3{transform:rotateY(-90deg);transform-origin:right}.open .p0{transform:translateY(-200px)}.open .p1{transform:translateX(200px)}.open .p2{transform:translateY(200px)}.open .p3{transform:translateX(-200px)}.lid{background:var(--g);border:5px solid #10342b;transform:translateZ(196px);transition:transform .9s;opacity:0}.open .lid{opacity:1;transform:translateZ(196px) rotateX(115deg)}.cube:not(.open)>.base,.cube:not(.open)>.panel{opacity:0}.card{height:100%;padding:15px;border-radius:7px;background:var(--cream);display:flex;flex-direction:column;justify-content:center;transition:transform .65s;overflow:hidden}.card img{width:100%;height:90px;object-fit:cover;border-radius:6px}.card small{opacity:.55;font-size:9px;letter-spacing:.12em}.card b{font:17px Georgia;margin-top:8px}.media-badge{align-self:flex-start;margin-top:7px;border-radius:99px;background:#173f3514;padding:4px 8px;font-size:9px}.controls{display:flex;justify-content:center;gap:10px;margin-top:-12px}.controls button{height:48px;border-radius:13px;padding:0 20px;border:1px solid var(--line);background:#fff;cursor:pointer}.controls .main{background:var(--g);color:#fff;border:0;font-weight:bold;min-width:210px}.overlay{position:fixed;inset:0;background:#edf1eb;z-index:10;overflow:auto;padding:24px;display:none}.overlay.show{display:block}.editor{max-width:1100px;margin:auto}.head{background:#fff;border:1px solid var(--line);padding:25px;border-radius:20px;position:relative}.head h2{font:32px Georgia;margin:5px}.close{position:absolute;right:18px;top:18px;border:0;background:#edf1eb;border-radius:50%;width:38px;height:38px;font-size:24px;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:15px}.item{background:#fff;border:1px solid var(--line);padding:15px;border-radius:16px}.upload{height:125px;background:#f3eddf;border:1px dashed #93a29a;border-radius:10px;display:grid;place-items:center;overflow:hidden;cursor:pointer;margin:10px 0;text-align:center;color:#52675f}.upload input{display:none}.upload img{width:100%;height:100%;object-fit:cover}.video-upload{height:48px;background:#edf3ef}.item>label:not(.upload){display:block;font-size:11px;font-weight:bold;color:#65736c;margin-top:8px}.item input,.item textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px;margin-top:4px}.item textarea{height:75px}.video-name{font-size:11px;color:#507265;margin:-2px 0 5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.remove{border:0;background:none;color:#9a584e;font-size:11px;cursor:pointer;padding:3px}.save{display:block;margin:20px auto;background:var(--g);color:#fff;border:0;border-radius:12px;padding:14px 28px;font-weight:bold;cursor:pointer}
+.task-page{min-height:100vh;background:linear-gradient(145deg,#eef3ed,#fff);padding-bottom:45px}.task-top{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5vw}.task-wrap{width:min(1050px,92vw);margin:34px auto}.task-label{font-size:11px;letter-spacing:.2em;font-weight:bold;color:#718078}.task-wrap h1{font:clamp(34px,5vw,58px) Georgia;margin:9px 0 25px}.task-sheet{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,50px);box-shadow:0 25px 70px #173f3515}.task-image{display:block;max-width:100%;max-height:62vh;object-fit:contain;margin:0 auto;border-radius:16px}.task-text{font-size:clamp(18px,2.2vw,25px);line-height:1.55;text-align:center;max-width:800px;margin:28px auto}.task-video{display:block;width:100%;max-height:65vh;background:#10231d;border-radius:16px;margin-top:25px}.empty-media{min-height:320px;border:2px dashed #c7d0ca;border-radius:18px;display:grid;place-items:center;text-align:center;color:#809087;padding:30px}.media-title{font:26px Georgia;margin:35px 0 12px}.screen-actions{display:flex;justify-content:center;gap:12px;margin-top:25px}.screen-actions button{border:0;border-radius:12px;background:var(--g);color:#fff;padding:14px 25px;font-weight:bold;cursor:pointer}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.stage{transform:scale(.78);margin:-25px -100px;width:calc(100% + 200px)}.intro h1{font-size:34px}}@media(max-width:520px){.grid{grid-template-columns:1fr}.brand{font-size:12px}.controls button:not(.main){display:none}.task-top{padding:0 16px}.task-sheet{border-radius:18px}.task-wrap{margin-top:22px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const defaults=[
+ {title:'Жилища народов',text:'Рассмотри изображения и найди жилище русского народа.',image:'',videoName:''},
+ {title:'Продолжи узор',text:'Определи закономерность и продолжи орнамент.',image:'',videoName:''},
+ {title:'Состав числа',text:'Найди разные способы составить число семь.',image:'',videoName:''},
+ {title:'Вопрос команде',text:'Обсудите, что помогло выполнить задания вместе.',image:'',videoName:''}
+];
+let tasks;
+try{tasks=JSON.parse(localStorage.offlineMulticube)||structuredClone(defaults)}catch(e){tasks=structuredClone(defaults)}
+tasks=defaults.map((d,i)=>({...d,...(tasks[i]||{})}));
+let turn=0,opened=false,drag=null,db;
+const app=document.getElementById('app');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function openDb(){return new Promise((resolve,reject)=>{const q=indexedDB.open('multicube-media',1);q.onupgradeneeded=()=>q.result.createObjectStore('videos');q.onsuccess=()=>{db=q.result;resolve(db)};q.onerror=()=>reject(q.error)})}
+function videoGet(i){return new Promise(resolve=>{if(!db)return resolve(null);const q=db.transaction('videos').objectStore('videos').get(i);q.onsuccess=()=>resolve(q.result||null);q.onerror=()=>resolve(null)})}
+function videoSet(i,file){return new Promise((resolve,reject)=>{const q=db.transaction('videos','readwrite').objectStore('videos').put(file,i);q.onsuccess=resolve;q.onerror=()=>reject(q.error)})}
+function videoDelete(i){return new Promise(resolve=>{if(!db)return resolve();const q=db.transaction('videos','readwrite').objectStore('videos').delete(i);q.onsuccess=resolve;q.onerror=resolve})}
+function save(){try{localStorage.offlineMulticube=JSON.stringify(tasks)}catch(e){}}
+function home(){
+ app.innerHTML=`<header class="bar"><div class="brand"><i>М</i>МУЛЬТИКУБ</div><button class="edit" onclick="editor(true)">✎ Редактировать</button></header>
+ <section class="intro"><small>ИНТЕРАКТИВНЫЙ ИНСТРУМЕНТ</small><h1>Цифровой мультикуб</h1><p>Откройте куб, поворачивайте его и выбирайте задания.</p></section>
+ <section class="stage"><div class="scene" id="scene"><div class="cube" id="cube"><div class="solid"><div class="face front"></div><div class="face back"></div><div class="face right"></div><div class="face left"></div><div class="face bottom"></div><div class="face top">МУЛЬТИКУБ</div></div><div class="base"></div><div class="lid"></div><div id="panels"></div></div></div></section>
+ <div class="controls"><button onclick="rotate(-90)">↶ Повернуть</button><button class="main" id="openBtn" onclick="toggle()">Открыть мультикуб</button><button onclick="rotate(90)">Повернуть ↷</button></div>
+ <div class="overlay" id="editor"><div class="editor"><div class="head"><button class="close" onclick="editor(false)">×</button><small>НАСТРОЙКА ЗАНЯТИЯ · АВТОСОХРАНЕНИЕ</small><h2>Редактор граней</h2><p>Добавьте картинку, формулировку и при необходимости видео для каждой грани.</p></div><div class="grid" id="grid"></div><button class="save" onclick="editor(false)">Сохранить и перейти к кубу</button></div></div>`;
+ render();draw();bindDrag()
+}
+function render(){
+ panels.innerHTML=tasks.map((t,i)=>`<button class="panel p${i}" onclick="openTask(${i})"><div class="card">${t.image?`<img src="${t.image}" alt="">`:`<strong style="font:38px Georgia">${i+1}</strong>`}<small>ЗАДАНИЕ ${i+1}</small><b>${esc(t.title)}</b>${t.videoName?'<span class="media-badge">▶ ЕСТЬ ВИДЕО</span>':''}</div></button>`).join('');
+ grid.innerHTML=tasks.map((t,i)=>`<div class="item"><small>ГРАНЬ ${i+1}</small>
+ <label class="upload">${t.image?`<img src="${t.image}" alt="Картинка задания">`:'＋ Загрузить картинку'}<input type="file" accept="image/*" onchange="uploadImage(${i},this.files[0])"></label>
+ ${t.image?`<button class="remove" onclick="removeImage(${i})">Удалить картинку</button>`:''}
+ <label>Название<input value="${esc(t.title)}" oninput="tasks[${i}].title=this.value;save();renderPanelsOnly()"></label>
+ <label>Текст задания<textarea oninput="tasks[${i}].text=this.value;save()">${esc(t.text)}</textarea></label>
+ <label class="upload video-upload">▶ ${t.videoName?'Заменить видео':'Добавить видео'}<input type="file" accept="video/*" onchange="uploadVideo(${i},this.files[0])"></label>
+ ${t.videoName?`<div class="video-name">Видео: ${esc(t.videoName)}</div><button class="remove" onclick="removeVideo(${i})">Удалить видео</button>`:''}</div>`).join('');
+ draw()
+}
+function renderPanelsOnly(){if(!document.getElementById('panels'))return;panels.innerHTML=tasks.map((t,i)=>`<button class="panel p${i}" onclick="openTask(${i})"><div class="card">${t.image?`<img src="${t.image}" alt="">`:`<strong style="font:38px Georgia">${i+1}</strong>`}<small>ЗАДАНИЕ ${i+1}</small><b>${esc(t.title)}</b>${t.videoName?'<span class="media-badge">▶ ЕСТЬ ВИДЕО</span>':''}</div></button>`).join('');draw()}
+function rotate(n){turn+=n;draw()}
+function draw(){const c=document.getElementById('cube');if(!c)return;c.style.transform=`rotateX(60deg) rotateZ(${turn}deg)`;document.querySelectorAll('.card').forEach(x=>x.style.transform=`rotateZ(${-turn}deg)`)}
+function toggle(){opened=!opened;cube.classList.toggle('open',opened);openBtn.textContent=opened?'Закрыть куб':'Открыть мультикуб'}
+function editor(v){editorEl().classList.toggle('show',v);if(v)render()}
+function editorEl(){return document.getElementById('editor')}
+function bindDrag(){scene.onpointerdown=e=>{scene.setPointerCapture(e.pointerId);drag=[e.clientX,turn]};scene.onpointermove=e=>{if(drag){turn=drag[1]+(e.clientX-drag[0])*.45;draw()}};scene.onpointerup=()=>drag=null}
+function uploadImage(i,f){if(!f)return;const r=new FileReader;r.onload=()=>{const im=new Image;im.onload=()=>{const s=Math.min(1,1200/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);tasks[i].image=c.toDataURL('image/jpeg',.82);save();render()};im.src=r.result};r.readAsDataURL(f)}
+function removeImage(i){tasks[i].image='';save();render()}
+async function uploadVideo(i,f){if(!f)return;try{await videoSet(i,f);tasks[i].videoName=f.name;save();render()}catch(e){alert('Не удалось сохранить видео. Попробуйте файл меньшего размера.')}} 
+async function removeVideo(i){await videoDelete(i);tasks[i].videoName='';save();render()}
+function openTask(i){if(!opened)return;location.href=`?task=${i}`}
+async function taskPage(i){
+ const t=tasks[i];if(!t){location.href='./';return}
+ app.innerHTML=`<main class="task-page"><header class="task-top"><a class="back" href="./">← Вернуться к кубу</a><div class="brand"><i>М</i>МУЛЬТИКУБ</div></header><section class="task-wrap"><span class="task-label">ЗАДАНИЕ ${i+1}</span><h1>${esc(t.title)}</h1><article class="task-sheet">${t.image?`<img class="task-image" src="${t.image}" alt="${esc(t.title)}">`:`<div class="empty-media">Загрузите картинку задания в редакторе мультикуба</div>`}<p class="task-text">${esc(t.text)}</p><div id="videoSlot"></div><div class="screen-actions"><button onclick="location.href='./'">Готово · вернуться к кубу</button></div></article></section></main>`;
+ const blob=await videoGet(i);if(blob){const url=URL.createObjectURL(blob);videoSlot.innerHTML=`<h2 class="media-title">Видео к заданию</h2><video class="task-video" controls playsinline src="${url}"></video>`}else if(t.videoName){videoSlot.innerHTML=`<div class="empty-media">Видео нужно загрузить заново на этом устройстве</div>`}
+}
+openDb().catch(()=>null).finally(()=>{const p=new URLSearchParams(location.search),n=p.get('task');n===null?home():taskPage(Number(n))});
+</script>
+</body>
+</html>
